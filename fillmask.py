@@ -23,6 +23,12 @@ def fillMask(label):
     '''
     label[np.any(np.logical_and(np.logical_and(label != unknown, label <= (254, 254, 254)), np.logical_and(
         np.logical_and(np.logical_and(label != urban_land, label != argriculture_land), np.logical_and(label != forest_land, label != water)), np.logical_and(label != range_land, label != barren_land))), axis=-1)] = urban_land
+
+    """
+    if the area needed to mask have rgb value equal to rarely appear rgb value, uncomment the followinf code, masking need to be manualy done
+    """
+    #label[np.all(label == unknown, axis=-1)] = urban_land
+
     '''
     to check if their are any pixel which doesn't have an cetain rgb value that represent a class stated above
     will return [] if all pixel in the image have an cetain rgb value that represent a class stated above
@@ -43,11 +49,11 @@ def start(input):
     try:
         print("saving...")
         status = cv2.imwrite(
-            '/Users/gohyuhan/Documents/test/google_earth_image/label125-1.png', output)
+            '/Users/gohyuhan/Documents/test/google_earth_image/label120-1.png', output)
 
     except:
         print("fail to save")
 
 
-start('/Users/gohyuhan/Documents/test/google_earth_image/label125-1.png')
+start('/Users/gohyuhan/Documents/test/google_earth_image/label120.png')
 
